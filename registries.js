@@ -15,7 +15,6 @@ class RegistriesArray {
     let aggregatedMetrics = "";
     for (const entry of this.array) {
       const metrics = await entry.registry.metrics();
-      console.log(metrics);
       aggregatedMetrics += metrics;
     }
     return aggregatedMetrics;

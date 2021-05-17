@@ -40,7 +40,39 @@ This can be used inn conjunction with the morph.ocp.rhacm-custom-metrics-collect
 4. Query from http://localhost:9090
 
 ## How to add metrics
-1. create new file in ./metrics (one file per metric name)
-2. implement metric class to define required labels
-3. implement update() method to genrate required data
-4. create and register one or more instances
+1. create new file in ./metrics (one file per metric name) by copying one of the samples
+2. implement metric class to define required anme and labels
+3. implement update() method to generate required data
+4. implement start() method to set the export interval and begin generating values
+5. create and register one or more instances with parameters as necessary for labels, initial values etc.
+6. register each new metric name in the `deployment.yml` file so it will be scraped
+
+## How to deploy
+1. This builds on the morph.ocp.rhacm-custom-metrics-collector deployment which is a pre-req.
+2. Build the docker image for metrics generator and push to docker hub
+   ```sh
+   # build docker image for metrics generator
+   docker build . -f ./deploy/dockerfile-metrics-generator -t davidmccarty/metrics-generator
+   # test on local
+   docker run --rm  --name metrics -p 3000:3000 -d davidmccarty/metrics-generator
+   docker ps | grep metrics
+   docker logs metrics
+   http://localhost:3000/metrics
+   docker stop metrics
+   # push image
+   docker push davidmccarty/metrics-generator
+   ```
+3. Build the docker image for metrics generator and push to docker hub
+   ```sh
+   # build docker image for prometheus
+   docker build . -f ./deploy/dockerfile-prometheus -t davidmccarty/metrics-prometheus
+   # test on local
+   docker run --rm  --name prometheus -p 9090:9090 -d davidmccarty/metrics-prometheus
+   docker ps | grep prometheus
+   docker logs prometheus
+   http://localhost:9090
+   docker stop prometheus
+   # push image
+   docker push davidmccarty/metrics-prometheus
+   ```
+4. For each metrics generator you need to craete a deployment based on

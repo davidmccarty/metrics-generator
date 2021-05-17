@@ -5,7 +5,7 @@
  */
 
 const prom = require("prom-client");
-const Registries = require("../Registries");
+const Registries = require("../registries");
 const registries = new Registries().getInstance();
 
 class Metric {
@@ -33,6 +33,7 @@ class Metric {
     const min = 0;
     const value = Math.floor(Math.random() * (max - min) + min);
     this.metric.labels(this.labels).set(value);
+    console.log('updated sample_gauge: ' + value);
   }
 
   // trigger data generation here

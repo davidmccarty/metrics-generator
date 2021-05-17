@@ -4,7 +4,7 @@
  */
 
 const prom = require("prom-client");
-const Registries = require("../Registries");
+const Registries = require("../registries");
 const registries = new Registries().getInstance();
 
 class Metric {
@@ -32,11 +32,12 @@ class Metric {
     const min = 0.00001;
     let increment = Math.random() * (max - min) + min;
     this.metric.labels(this.labels).inc(increment);
+    console.log('updated sample_counter:' + increment);
   }
 
   // trigger data generation here
   start() {
-    setInterval(this.update.bind(this), 2000);
+    setInterval(this.update.bind(this), 5000);
   }
 }
 

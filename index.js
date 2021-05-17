@@ -7,9 +7,9 @@ const app = express();
 const port = 3000;
 
 // Configure metrics
-const Registries = require("./Registries");
+const Registries = require("./registries");
 const registries = new Registries().getInstance();
-const metrics = require("./metrics");
+require("./metrics");
 
 // Listen on localhost:3000/metrics to dump metrics
 app.get("/metrics", async function (req, res) {

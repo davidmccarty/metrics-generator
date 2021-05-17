@@ -2,5 +2,5 @@
  * Load all metrics here
  */
 
-const sampleCounter = require("./metrics/_sample-counter")
-const sampleGauge = require("./metrics/_sample-gauge")
+require("./metrics/_sample-counter")
+require("./metrics/_sample-gauge")
