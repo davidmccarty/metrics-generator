@@ -1,0 +1,21 @@
+global:
+  scrape_interval:     60s # By default, scrape targets every 15 seconds.
+
+  # Attach these labels to any time series or alerts when communicating with
+  # external systems (federation, remote storage, Alertmanager).
+  external_labels: null
+
+rule_files: []
+
+# A scrape configuration containing exactly one endpoint to scrape:
+# Here it's Prometheus itself.
+scrape_configs:
+  # Prometheus self monitor:wq
+  - job_name: 'metrics-generator'
+    honor_labels: true
+    static_configs:
+      - targets: ['localhost:3000']
+    # for deploty to kubernetes ...
+    #  - targets: ['localhost:3000']
+    # for local testing use ...
+    #  - targets: ['host.docker.internal:3000']

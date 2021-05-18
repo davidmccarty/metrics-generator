@@ -1,0 +1,17 @@
+FROM prom/prometheus
+
+# Create app directory
+WORKDIR    /app
+RUN chmod 777 /app
+
+# Install config file
+COPY ./deploy/prometheus.yml /app
+
+USER       nobody
+EXPOSE     9090
+ENTRYPOINT [ "/bin/prometheus" ]
+CMD        [ "--config.file=/app/prometheus.yml", \
+             "--storage.tsdb.path=/app", \
+             "--web.console.libraries=/usr/share/prometheus/console_libraries", \
+             "--web.console.templates=/usr/share/prometheus/consoles", \
+             "--log.level=debug" ]

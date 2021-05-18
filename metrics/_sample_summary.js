@@ -1,6 +1,7 @@
 /**
- * Sample metric - use this as template for creating new counter metrics
- *               - don't forget to then register the metric in _metrics.js
+ * Sample metric - use this as template for creating new summary metrics
+ *               - don't forget to then register the metric in metrics.js
+ *
  */
 
 const prom = require("prom-client");
@@ -13,10 +14,11 @@ class Metric {
     this.registry = new prom.Registry();
     registries.register(this.registry);
     // configure properties and labels here
-    this.metric = new prom.Counter({
-      name: "sample_counter",
-      help: "This is a sample counter to copy",
+    this.metric = new prom.Summary({
+      name: "sample_summary",
+      help: "This is a sample summary to copy",
       labelNames: ["namespace", "pod", "id"],
+      percentiles: [0.01, 0.1, 0.9, 0.99],
       registers: [this.registry],
     });
     this.labels = {
@@ -26,18 +28,28 @@ class Metric {
     };
   }
 
+  // v is the number of times random is summed and should be over >= 1
+  // return a random number between 0-1 exclusive
+  randomGaussian(v) {
+    var r = 0;
+    for (var i = v; i > 0; i--) {
+      r += Math.random();
+    }
+    return r / v;
+  }
+
   // configure generated values here
   update() {
-    const max = 0.0001;
-    const min = 0.00001;
-    let increment = Math.random() * (max - min) + min;
-    this.metric.labels(this.labels).inc(increment);
-    console.log('updated sample_counter:' + increment);
+    const max = 2;
+    const min = 0.001;
+    const value = Math.abs(this.randomGaussian(5) - 0.5) * (max - min) + min;
+    this.metric.labels(this.labels).observe(value);
   }
 
   // trigger data generation here
   start() {
-    setInterval(this.update.bind(this), 5000);
+    this.update();
+    setInterval(this.update.bind(this), 10000);
   }
 }
 

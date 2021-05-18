@@ -1,6 +1,6 @@
 /**
- * Sample metric - use this as template for creating new gauge metrics
- *               - don't forget to then register the metric in _metrics.js
+ * Sample metric - use this as template for creating new histogram metrics
+ *               - don't forget to then register the metric in metrics.js
  *
  */
 
@@ -14,10 +14,11 @@ class Metric {
     this.registry = new prom.Registry();
     registries.register(this.registry);
     // configure properties and labels here
-    this.metric = new prom.Gauge({
-      name: "sample_gauge",
-      help: "This is a sample gauge to copy",
+    this.metric = new prom.Histogram({
+      name: "sample_histogram",
+      help: "This is a sample histogram to copy",
       labelNames: ["namespace", "pod", "id"],
+      buckets: [0.1, 1, 2, 5, 10, 60],
       registers: [this.registry],
     });
     this.labels = {
@@ -27,18 +28,28 @@ class Metric {
     };
   }
 
+  // v is the number of times random is summed and should be over >= 1
+  // return a random number between 0-1 exclusive
+  randomGaussian(v) {
+    var r = 0;
+    for (var i = v; i > 0; i--) {
+      r += Math.random();
+    }
+    return r / v;
+  }
+
   // configure generated values here
   update() {
-    const max = 10;
-    const min = 0;
-    const value = Math.floor(Math.random() * (max - min) + min);
-    this.metric.labels(this.labels).set(value);
-    console.log('updated sample_gauge: ' + value);
+    const max = 2;
+    const min = 0.001;
+    const value = Math.abs(this.randomGaussian(5) - 0.5) * (max - min) + min;
+    this.metric.labels(this.labels).observe(value);
   }
 
   // trigger data generation here
   start() {
-    setInterval(this.update.bind(this), 5000);
+    this.update();
+    setInterval(this.update.bind(this), 10000);
   }
 }
 

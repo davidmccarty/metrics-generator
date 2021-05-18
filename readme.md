@@ -18,7 +18,7 @@ This can be used inn conjunction with the morph.ocp.rhacm-custom-metrics-collect
 2. Add following to prometheus.yaml
     ```yaml
     global:
-      scrape_interval:     5s # By default, scrape targets every 15 seconds.
+      scrape_interval:     60s # By default, scrape targets every 15 seconds.
       # Attach these labels to any time series or alerts when communicating with
       # external systems (federation, remote storage, Alertmanager).
       external_labels:
@@ -40,6 +40,7 @@ This can be used inn conjunction with the morph.ocp.rhacm-custom-metrics-collect
 4. Query from http://localhost:9090
 
 ## How to add metrics
+Refer - https://github.com/siimon/prom-client
 1. create new file in ./metrics (one file per metric name) by copying one of the samples
 2. implement metric class to define required anme and labels
 3. implement update() method to generate required data
@@ -62,7 +63,7 @@ This can be used inn conjunction with the morph.ocp.rhacm-custom-metrics-collect
    # push image
    docker push davidmccarty/metrics-generator
    ```
-3. Build the docker image for metrics generator and push to docker hub
+3. Build the docker image for metrics prometheus and push to docker hub
    ```sh
    # build docker image for prometheus
    docker build . -f ./deploy/dockerfile-prometheus -t davidmccarty/metrics-prometheus
@@ -75,4 +76,5 @@ This can be used inn conjunction with the morph.ocp.rhacm-custom-metrics-collect
    # push image
    docker push davidmccarty/metrics-prometheus
    ```
-4. For each metrics generator you need to craete a deployment based on
+4. For each metrics generator you need to craete a deployment based on deployment.yml
+   find and replace `demo-1`to add more instances.
