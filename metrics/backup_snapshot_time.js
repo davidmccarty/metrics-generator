@@ -1,7 +1,11 @@
 /**
  *  backup_snapshot_time{
- *    } =
- *
+ *    exported_instance="shell",
+ *    exported_job="etcd-backup-exporter",
+ *    filename="snapshot_2021-05-19_120001.db",
+ *    instance="pushgateway-service:9091",
+ *    job="pushgateway"
+ *  }
  */
 
 const prom = require("prom-client");

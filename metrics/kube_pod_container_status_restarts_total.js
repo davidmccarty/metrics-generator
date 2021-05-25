@@ -55,7 +55,7 @@ class Metric {
 }
 
 // Configure all your instances here
-new Metric("pod-1", 0.9).start();
-new Metric("pod-2", 0.99).start();
+new Metric("pod-1", 0.99).start();
+new Metric("pod-2", 0.995).start();
 new Metric("pod-3", 0.999).start();
-new Metric("pod-4", 0.999).start();
+new Metric("pod-4", 0.9999).start();

@@ -28,7 +28,7 @@ class Metric {
     this.registry = new prom.Registry();
     registries.register(this.registry);
     // configure properties and labels here
-    this.metric = new prom.Counter({
+    this.metric = new prom.Gauge({
       name: "cluster_operator_conditions",
       help: "mock cluster_operator_conditions",
       labelNames: ["instance", "condition"],
@@ -49,7 +49,7 @@ class Metric {
       this.labels.condition = "Failing";
     }
     if(this.lastCondition != this.labels.condition){
-      this.metric.labels(this.labels).inc(1);
+      this.metric.labels(this.labels).set(1);
       this.lastCondition = this.labels.condition;
     }
   }
