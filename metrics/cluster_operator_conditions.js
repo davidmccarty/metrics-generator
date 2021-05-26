@@ -62,7 +62,7 @@ class Metric {
 }
 
 // Configure all your instances here
-new Metric("operator-1", 0.99).start();
-new Metric("operator-2", 0.999).start();
-new Metric("operator-3", 0.999).start();
-new Metric("operator-4", 0.999).start();
+new Metric("operator-1", 0.95).start();
+new Metric("operator-2", 0.95).start();
+new Metric("operator-3", 0.99).start();
+new Metric("operator-4", 0.99).start();

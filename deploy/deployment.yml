@@ -4,17 +4,17 @@ apiVersion: apps/v1
 metadata:
   annotations:
     deployment.kubernetes.io/revision: '1'
-  name: metrics-generator-demo-6
+  name: metrics-generator-demo-1
   namespace: open-cluster-management-addon-observability
 spec:
   replicas: 1
   selector:
     matchLabels:
-      component: metrics-generator-demo-6
+      component: metrics-generator-demo-1
   template:
     metadata:
       labels:
-        component: metrics-generator-demo-6
+        component: metrics-generator-demo-1
     spec:
       restartPolicy: Always
       serviceAccountName: endpoint-observability-operator-sa
@@ -22,22 +22,22 @@ spec:
       terminationGracePeriodSeconds: 30
       securityContext: {}
       containers:
-        - name: metrics-generator-demo-6
+        - name: metrics-generator-demo-1
           imagePullPolicy: Always
           image: davidmccarty/metrics-generator
-        - name: metrics-prometheus-demo-6
+        - name: metrics-prometheus-demo-1
           imagePullPolicy: Always
           image: davidmccarty/metrics-prometheus
         - terminationMessagePath: /dev/termination-log
-          name: metrics-scraper-demo-6
+          name: metrics-scraper-demo-1
           command:
             - /usr/bin/telemeter-client
             - '--id=$(ID)'
             - '--from=$(FROM)'
             - '--to-upload=$(TO)'
             - '--interval=60s'
-            - '--label="cluster=demo-6"'
-            - '--label="clusterID=demo-6"'
+            - '--label="cluster=demo-1"'
+            - '--label="clusterID=demo-1"'
             - '--limit-bytes=1073741824'
             - '--match={__name__="sample_counter"}'
             - '--match={__name__="sample_gauge"}'
@@ -78,7 +78,7 @@ spec:
               value: >-
                 https://observatorium-api-open-cluster-management-observability.shared-tools-int.maint5.eu-central-1.aws.openpaas-maint.axa-cloud.com/api/metrics/v1/default/api/v1/receive
             - name: ID
-              value: demo-6
+              value: demo-1
           imagePullPolicy: IfNotPresent
           volumeMounts:
             - name: observability-managed-cluster-certs
