@@ -38,6 +38,7 @@ spec:
             - '--interval=60s'
             - '--label="cluster=demo-1"'
             - '--label="clusterID=demo-1"'
+            - '--label="clusterURL=demo-1.demo.com"'
             - '--limit-bytes=1073741824'
             - '--match={__name__="sample_counter"}'
             - '--match={__name__="sample_gauge"}'
@@ -47,7 +48,7 @@ spec:
             - '--match={__name__="sample_summary"}'
             - '--match={__name__="sample_summary_count"}'
             - '--match={__name__="sample_summary_sum"}'
-            - '--match={__name__="cluster_version"}'
+            - '--match={__name__="cluster_installer"}'
             - '--match={__name__="backup_snapshot_time"}'
             - '--match={__name__="up"}'
             - '--match={__name__="apiserver_request_duration_seconds_bucket"}'
@@ -85,8 +86,6 @@ spec:
               mountPath: /tlscerts
             - name: serving-certs-ca-bundle
               mountPath: /etc/serving-certs-ca-bundle
-            - name: openpaas-ocp-metrics-extended
-              mountPath: /etc/openpaas-ocp-metrics-extended
           terminationMessagePolicy: File
           image: >-
             registry.redhat.io/rhacm2/metrics-collector-rhel8@sha256:381fa8c974b3118c7115646bc2e6ecd6eec24ee616b17e0c78aaab9585bfaa87
@@ -100,10 +99,6 @@ spec:
           configMap:
             name: metrics-collector-serving-certs-ca-bundle
             defaultMode: 420
-        - name: openpaas-ocp-metrics-extended
-          configMap:
-            name: openpaas-ocp-metrics-extended-tb68kd4948
-            defaultMode: 440
       dnsPolicy: ClusterFirst
   strategy:
     type: RollingUpdate
