@@ -42,10 +42,10 @@ class Metric {
   // configure generated values here
   update() {
     const value = 0;
-    if(Math.random > 0.8){
+    if(Math.random() > 0.8){
       value = 1;
     }
-    if(Math.random > 0.9){
+    if(Math.random() > 0.9){
       value = 2;
     }
     this.metric.labels(this.labels).set(value);
