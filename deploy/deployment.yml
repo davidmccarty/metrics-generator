@@ -72,6 +72,9 @@ spec:
             - '--match={__name__="cluster_operator_conditions"}'
             - '--match={__name__="kubelet_volume_stats_available_bytes"}'
             - '--match={__name__="kubelet_volume_stats_capacity_bytes"}'
+            - '--match={__name__="es_cluster_status"}'
+            - '--match={__name__="es_fs_path_available_bytes"}'
+            - '--match={__name__="es_fs_path_total_bytes"}'
           env:
             - name: FROM
               value: 'http://localhost:9090'
