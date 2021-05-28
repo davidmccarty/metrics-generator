@@ -24,7 +24,7 @@ spec:
       containers:
         - name: metrics-generator-demo-1
           imagePullPolicy: Always
-          image: davidmccarty/metrics-generator
+          image: davidmccarty/rhacm-metrics-generator
         - name: metrics-prometheus-demo-1
           imagePullPolicy: Always
           image: davidmccarty/metrics-prometheus

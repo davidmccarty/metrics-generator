@@ -53,15 +53,15 @@ Refer - https://github.com/siimon/prom-client
 2. Build the docker image for metrics generator and push to docker hub
    ```sh
    # build docker image for metrics generator
-   docker build . -f ./deploy/dockerfile-metrics-generator -t davidmccarty/metrics-generator
+   docker build . -f ./deploy/dockerfile-metrics-generator -t davidmccarty/rhacm-metrics-generator
    # test on local
-   docker run --rm  --name metrics -p 3000:3000 -d davidmccarty/metrics-generator
+   docker run --rm  --name metrics -p 3000:3000 -d davidmccarty/rhacm-metrics-generator
    docker ps | grep metrics
    docker logs metrics
    http://localhost:3000/metrics
    docker stop metrics
    # push image
-   docker push davidmccarty/metrics-generator
+   docker push davidmccarty/rhacm-metrics-generator
    ```
 3. Build the docker image for metrics prometheus and push to docker hub
    ```sh
