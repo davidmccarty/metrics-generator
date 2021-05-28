@@ -44,7 +44,7 @@ class Metric {
     const max = 120;
     const days = Math.floor(Math.random() * (max - min) + min);
     const expireDate = Date.now() + (days * 24 * 60 * 60 * 1000);
-    const value = expireDate / 1000;
+    let value = expireDate / 1000;
     this.metric.labels(this.labels).set(value);
   }
 

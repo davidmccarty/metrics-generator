@@ -41,7 +41,7 @@ class Metric {
 
   // configure generated values here
   update() {
-    const value = 0;
+    let value = 0;
     if(Math.random() > 0.8){
       value = 1;
     }

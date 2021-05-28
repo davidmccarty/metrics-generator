@@ -31,8 +31,8 @@ class Metric {
   // v is the number of times random is summed and should be over >= 1
   // return a random number between 0-1 exclusive
   randomGaussian(v) {
-    var r = 0;
-    for (var i = v; i > 0; i--) {
+    let r = 0;
+    for (let i = v; i > 0; i--) {
       r += Math.random();
     }
     return r / v;
@@ -42,7 +42,7 @@ class Metric {
   update() {
     const max = 2;
     const min = 0.001;
-    const value = Math.abs(this.randomGaussian(5) - 0.5) * (max - min) + min;
+    let value = Math.abs(this.randomGaussian(5) - 0.5) * (max - min) + min;
     this.metric.labels(this.labels).observe(value);
   }
 

@@ -37,7 +37,7 @@ class Metric {
 
   // configure generated values here
   update() {
-    const value =
+    let value =
       this.capacity * ((Math.random() - 0.5) * this.pctfree + this.pctfree);
     this.metric.labels(this.labels).set(value);
   }

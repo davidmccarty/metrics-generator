@@ -31,7 +31,7 @@ class Metric {
   update() {
     const max = 10;
     const min = 0;
-    const value = Math.floor(Math.random() * (max - min) + min);
+    let value = Math.floor(Math.random() * (max - min) + min);
     this.metric.labels(this.labels).set(value);
   }
 

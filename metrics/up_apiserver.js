@@ -51,7 +51,7 @@ class Metric {
 
   // configure generated values here
   update() {
-    const value = 1;
+    let value = 1;
     if(Math.random < this.pct){
       value = 0;
     }

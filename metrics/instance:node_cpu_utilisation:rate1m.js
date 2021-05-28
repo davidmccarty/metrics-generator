@@ -42,7 +42,7 @@ class Metric {
   update() {
     const min = this.pct / 2;
     const max = this.pct * 2;
-    const value = Math.random() * (max - min) + min;
+    let value = Math.random() * (max - min) + min;
     this.metric.labels(this.labels).set(value);
   }
 
