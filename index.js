@@ -1,3 +1,5 @@
+"use strict";
+
 /**
  * Create express server exposing configured metrics
  */
@@ -9,7 +11,10 @@ const port = 3000;
 // Configure metrics
 const Registries = require("./registries");
 const registries = new Registries().getInstance();
+
+// Load metrics
 require("./metrics/_metrics");
+
 
 // Listen on localhost:3000/metrics to dump metrics
 app.get("/metrics", async function (req, res) {

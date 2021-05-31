@@ -75,6 +75,17 @@ spec:
             - '--match={__name__="es_cluster_status"}'
             - '--match={__name__="es_fs_path_available_bytes"}'
             - '--match={__name__="es_fs_path_total_bytes"}'
+            - '--match={__name__="kube_node_labels"}'
+            - '--match={__name__="kube_node_status_allocatable_memory_bytes"}'
+            - '--match={__name__="container_memory_working_set_bytes"}'
+            - '--match={__name__="fluentd_output_status_retry_count"}'
+            - '--match={__name__="fluentd_output_status_num_errors"}'
+            - '--match={__name__="kube_pod_container_resource_requests_memory_bytes"}'
+            - '--match={__name__="kube_pod_container_resource_limits_memory_bytes"}'
+            - '--match={__name__="kube_node_status_allocatable_cpu_cores"}'
+            - '--match={__name__="container_cpu_usage_seconds_total"}'
+            - '--match={__name__="kube_pod_container_resource_requests_cpu_cores"}'
+            - '--match={__name__="kube_pod_container_resource_limits_cpu_cores"}'
           env:
             - name: FROM
               value: 'http://localhost:9090'

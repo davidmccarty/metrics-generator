@@ -55,7 +55,7 @@ class Metric {
   // trigger data generation here
   start() {
     this.update();
-    setInterval(this.update.bind(this), 10 * 60 * 1000);
+    setInterval(this.update.bind(this), 30 * 1000);
   }
 }
 

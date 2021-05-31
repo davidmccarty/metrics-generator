@@ -32,8 +32,8 @@ class Metric {
     registries.register(this.registry);
     // configure properties and labels here
     this.metric = new prom.Gauge({
-      name: "es_fs_path_available_bytes",
-      help: "mock es_fs_path_available_bytes",
+      name: "es_fs_path_total_bytes",
+      help: "mock es_fs_path_total_bytes",
       labelNames: ["endpoint", "job", "mount"],
       registers: [this.registry],
     });
@@ -54,7 +54,7 @@ class Metric {
   // trigger data generation here
   start() {
     this.update();
-    setInterval(this.update.bind(this), 10 * 60 * 1000);
+    setInterval(this.update.bind(this), 30 * 1000);
   }
 }
 

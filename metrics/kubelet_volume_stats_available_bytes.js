@@ -50,6 +50,6 @@ class Metric {
 }
 
 // Configure all your instances here
-new Metric("namespace-1", "pvc-1", 20 * 1024 * 1024 * 1024, 0.1).start();
-new Metric("namespace-2", "pvc-2", 50 * 1024 * 1024 * 1024, 0.2).start();
-new Metric("namespace-3", "pvc-3", 100 * 1024 * 1024 * 1024, 0.5).start();
+new Metric("namespace-1", "pvc-1", 100, 0.3).start();
+new Metric("namespace-2", "pvc-2", 100, 0.4).start();
+new Metric("namespace-3", "pvc-3", 100, 0.6).start();

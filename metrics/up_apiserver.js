@@ -14,15 +14,31 @@
  *  } = 1
  *
  * up{
- *  cluster="local-cluster",
- *  clusterID="5991493a-8bda-477f-a07b-b7e7caf15f5e",
- *  instance="https://default.artifactory.pink.eu-central-1.aws.openpaas.axa-cloud.com/artifactory/webapp/",
- *  job="blackbox",
- *  monitor_name="openpaas-prod-prometheus.shared-tools-int",
- *  receive="true",
- *  target="https://default.artifactory.pink.eu-central-1.aws.openpaas.axa-cloud.com/artifactory/webapp/",
- *  tenant_id="0db6b321-64cd-4956-8db0-8fd5cd8f12d8"
+ *    cluster="local-cluster",
+ *    clusterID="5991493a-8bda-477f-a07b-b7e7caf15f5e",
+ *    instance="https://default.artifactory.pink.eu-central-1.aws.openpaas.axa-cloud.com/artifactory/webapp/",
+ *    job="blackbox",
+ *    monitor_name="openpaas-prod-prometheus.shared-tools-int",
+ *    receive="true",
+ *    target="https://default.artifactory.pink.eu-central-1.aws.openpaas.axa-cloud.com/artifactory/webapp/",
+ *    tenant_id="0db6b321-64cd-4956-8db0-8fd5cd8f12d8"
  * }
+ *
+ * up{
+ *    cluster="local-cluster",
+ *    clusterDNS="maint5.eu-central-1.aws.openpaas-maint.axa-cloud.com",
+ *    clusterID="5991493a-8bda-477f-a07b-b7e7caf15f5e",
+ *    container="proxy",
+ *    endpoint="elasticsearch",
+ *    instance="10.94.46.10:60001",
+ *    job="elasticsearch-metrics",
+ *    namespace="openshift-logging",
+ *    pod="elasticsearch-cdm-f6mpxy5j-1-775f78b675-qbbd6",
+ *    prometheus="openshift-monitoring/k8s",
+ *    receive="true",
+ *    service="elasticsearch-metrics",
+ *    tenant_id="0db6b321-64cd-4956-8db0-8fd5cd8f12d8"
+ *  }
  *
  */
 
@@ -68,3 +84,4 @@ class Metric {
 // Configure all your instances here
 new Metric("apiserver", "", 1.0).start();
 new Metric("blackbox", "default.artifactory.url", 0.9).start();
+new Metric("elasticsearch-metrics", "", 0.9).start();
